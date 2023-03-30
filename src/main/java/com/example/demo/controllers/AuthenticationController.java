@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,7 @@ import com.example.demo.models.entities.User;
 @RequestMapping("/auth")
 public class AuthenticationController {
 	
-private static List<User> users = new ArrayList<>();
+	private static List<User> users = new ArrayList<>();
     
     static {
         users.add(new User("AH000011", "pass", "Arturo", "Hernandez", "user", true, new Date(10102020)));
@@ -24,10 +26,21 @@ private static List<User> users = new ArrayList<>();
         users.add(new User("JP000033", "pass", "Josue", "Perez", "user", true, new Date(15102022)));
         users.add(new User("NR000044", "pass", "Nestor", "Recinos", "admin", true, new Date(10102019)));
     }
+    
+	@GetMapping("/login-web")
+	public String getLogIn() {
+		return "login";
+	}
 	
 	@PostMapping("/login")
-	public String logIn(@ModelAttribute LoginDto loginDto) {
-		
-		return "Hola";
+	public String logIn(@ModelAttribute LoginDto loginDto, Model model) {
+		String pageToShow = "not-found";
+		for (User user: users) {
+			if(user.getCode().equals(loginDto.getCode()) && user.getPassword().equals(loginDto.getPassword())) {
+				pageToShow = "dashboard";
+				model.addAttribute("users", users);
+			}
+		}	
+		return pageToShow;
 	}
 }
