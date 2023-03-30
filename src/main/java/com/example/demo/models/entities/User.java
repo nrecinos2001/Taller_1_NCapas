@@ -9,6 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class User {
 	private String code;
+	private String password;
 	private String name;
 	private String lastname;
 	private String role;
