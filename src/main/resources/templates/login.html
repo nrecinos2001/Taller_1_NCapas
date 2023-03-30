@@ -140,7 +140,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taller 1</title>
+    <title>Taller 1 - Login</title>
 </head>
 <body>
 
@@ -150,15 +150,17 @@
 <div class="testbox">
   <h1>Registration</h1>
 
-  <form action="/">
+  <form action="/auth/login" method="POST">
       
   
-  <input type="text" name="name" id="name" placeholder="Codigo" required/>
+  <input type="text" name="code" id="name" placeholder="Codigo" required/>
   
-  <input type="password" name="name" id="name" placeholder="Password" required/>
+  <input type="password" name="password" id="name" placeholder="Password" required/>
   
    
-   <a href="#" class="button">Registrar</a>
+   <button class="button">
+   		Registrar
+   </button>
   </form>
 </div>
     
